@@ -1,0 +1,68 @@
+package raiden.tech.banking.service.implementation;
+
+import org.springframework.stereotype.Service;
+
+import raiden.tech.banking.Dto.AccountDto;
+import raiden.tech.banking.entity.Account;
+import raiden.tech.banking.mapper.AccountMapper;
+import raiden.tech.banking.repository.AccountRepository;
+import raiden.tech.banking.service.AccountService;
+
+
+@Service //Automatically creates spring bean for this class
+public class AccountServiceImpl implements AccountService{
+	
+	
+	//Next let us inject dependency as field
+	
+	private AccountRepository accountrepository;
+	
+	/**Next let us inject dependency as constructor
+	Normally we use @Autowire to inject dependency but from spring 4 version on words 
+	if we have only one constructor in class it will automatically inject dependency
+	*/
+	public AccountServiceImpl(AccountRepository accountrepository) {
+		super();
+		this.accountrepository = accountrepository;
+	}
+
+	@Override
+	public AccountDto createAccount(AccountDto accountdto) {
+		
+		Account account = AccountMapper.mapToAccount(accountdto);
+		Account savedAccount=accountrepository.save(account);
+		return AccountMapper.mapToAccountDto(savedAccount);
+	}
+
+	@Override
+	public AccountDto getAccountById(Long id) {
+		
+		Account account =accountrepository
+				.findById(id)
+				.orElseThrow(()->new RuntimeException("Account does not exists"));
+		return AccountMapper.mapToAccountDto(account);
+	}
+
+	@Override
+	public AccountDto deposit(Long id, double amount) {
+		
+		Account account =accountrepository
+				.findById(id)
+				.orElseThrow(()->new RuntimeException("Account does not exists"));
+		
+		double total = account.getBalance()+amount;
+		
+		account.setBalance(total);
+		Account savedAccount = accountrepository.save(account);
+		
+		return AccountMapper.mapToAccountDto(savedAccount);
+	}
+
+	@Override
+	public AccountDto withdraw(Long id, double amount) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+}

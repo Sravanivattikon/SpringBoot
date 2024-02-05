@@ -1,0 +1,9 @@
+package raiden.tech.banking.entity;
+
+public class Account {
+	
+	private long id;
+	private String accountHolderName;
+	private double balance;
+
+}

@@ -1,0 +1,5 @@
+package raiden.tech.banking.controller;
+
+public class AccountController {
+
+}

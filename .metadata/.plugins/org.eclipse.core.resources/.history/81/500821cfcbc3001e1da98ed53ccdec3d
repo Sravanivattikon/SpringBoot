@@ -1,0 +1,62 @@
+package raiden.tech.banking.controller;
+
+import java.util.Map;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import raiden.tech.banking.Dto.AccountDto;
+import raiden.tech.banking.service.AccountService;
+
+@RestController
+@RequestMapping("/api/accounts")
+public class AccountController {
+	
+	//Dependency Injection using fields
+	AccountService accountservice;
+	
+	
+	//Dependency Injection using Constructor
+	public AccountController(AccountService accountservice) {
+		super();
+		this.accountservice = accountservice;
+	}
+	
+	//Add Account Rest API
+	@PostMapping
+	public ResponseEntity<AccountDto> addAccount(@RequestBody AccountDto accountdto){
+		
+		
+		return new ResponseEntity<AccountDto>(accountservice.createAccount(accountdto), HttpStatus.CREATED);
+	}
+	//Get Account Rest API
+	@GetMapping("/{id}")
+	public ResponseEntity<AccountDto> getAccountbyId(@PathVariable Long id){
+		
+		
+		AccountDto accountdto = accountservice.getAccountById(id);
+	
+		return ResponseEntity.ok(accountdto);
+		
+		
+	}
+	
+	//Deposit Rest API
+	
+	public ResponseEntity<AccountDto> deposit(Long id,
+												Map<String, Double> request){
+													
+		accountservice.deposit(id, request.get("amount"));
+		
+		return null;
+		
+	}
+	
+
+}

@@ -1,0 +1,10 @@
+package raiden.tech.banking.service;
+
+import raiden.tech.banking.Dto.AccountDto;
+
+
+public interface AccountService {
+	
+	AccountDto createAccount(AccountDto accountdto);
+
+}

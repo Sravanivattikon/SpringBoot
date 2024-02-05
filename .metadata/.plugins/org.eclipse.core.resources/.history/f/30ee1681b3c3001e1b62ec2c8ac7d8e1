@@ -1,0 +1,9 @@
+package raiden.tech.banking.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import raiden.tech.banking.entity.Account;
+
+public interface AccountRepository extends JpaRepository<Account, long>{
+
+}

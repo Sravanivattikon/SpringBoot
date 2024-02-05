@@ -1,0 +1,22 @@
+package raiden.tech.banking.mapper;
+
+import raiden.tech.banking.Dto.AccountDto;
+import raiden.tech.banking.entity.Account;
+
+public class AccountMapper {
+	
+	public static Account mapToAccount(AccountDto accountdto) {
+		
+		Account account =new Account(
+				accountdto.getId(),
+				accountdto.getAccountHolderName(),
+				accountdto.getBalance()
+				);
+				
+				
+			
+		return account;
+		
+	}
+
+}

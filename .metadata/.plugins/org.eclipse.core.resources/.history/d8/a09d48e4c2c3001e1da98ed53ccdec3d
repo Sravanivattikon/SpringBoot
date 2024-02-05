@@ -1,0 +1,34 @@
+package raiden.tech.banking.service.implementation;
+
+import org.springframework.stereotype.Service;
+
+import raiden.tech.banking.Dto.AccountDto;
+import raiden.tech.banking.repository.AccountRepository;
+import raiden.tech.banking.service.AccountService;
+
+
+@Service //Automatically creates spring bean for this class
+public class AccountServiceImpl implements AccountService{
+	
+	
+	//Next let us inject dependency as field
+	
+	private AccountRepository accountrepository;
+	
+	/**Next let us inject dependency as constructor
+	Normally we use @Autowire to inject dependency but from spring 4 version on words 
+	if we have only one constructor in class it will automatically inject dependency
+	*/
+	public AccountServiceImpl(AccountRepository accountrepository) {
+		super();
+		this.accountrepository = accountrepository;
+	}
+
+	@Override
+	public AccountDto createAccount(AccountDto accountdto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+}

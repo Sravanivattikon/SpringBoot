@@ -1,0 +1,5 @@
+package raiden.tech.banking.service;
+
+public interface AccountService {
+
+}

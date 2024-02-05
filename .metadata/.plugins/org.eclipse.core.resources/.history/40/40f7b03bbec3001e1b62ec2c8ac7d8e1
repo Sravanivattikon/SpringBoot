@@ -1,0 +1,14 @@
+package raiden.tech.banking.Dto;
+
+import lombok.Data;
+import lombok.Getter;
+
+@Data
+@Getter
+public class AccountDto {
+	
+	private long id;
+	private String accountHolderName;
+	private double name;
+
+}

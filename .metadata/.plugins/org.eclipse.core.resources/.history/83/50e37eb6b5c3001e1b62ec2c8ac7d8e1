@@ -1,0 +1,32 @@
+package raiden.tech.banking.service.implementation;
+
+import org.springframework.stereotype.Service;
+
+import raiden.tech.banking.Dto.AccountDto;
+import raiden.tech.banking.repository.AccountRepository;
+import raiden.tech.banking.service.AccountService;
+
+
+@Service //Automatically creates spring bean for this class
+public class AccountServiceImpl implements AccountService{
+	
+	
+	//Next let us inject dependency as feild
+	
+	private AccountRepository accountrepository;
+	
+	//Next let us inject dependency as constructor
+	
+	public AccountServiceImpl(AccountRepository accountrepository) {
+		super();
+		this.accountrepository = accountrepository;
+	}
+
+	@Override
+	public AccountDto createAccount(AccountDto accountdto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+}
